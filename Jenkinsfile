@@ -24,6 +24,7 @@ node {
     stage('npm install') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
     }
+    /*
     stage('backend tests') {
         try {
             sh "./mvnw -ntp verify -P-webapp"
@@ -43,7 +44,7 @@ node {
             junit '**/target/test-results/TESTS-results-jest.xml'
         }
     }
-
+    */
     stage('packaging') {
         sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
