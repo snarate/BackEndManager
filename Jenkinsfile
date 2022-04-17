@@ -30,11 +30,12 @@ node {
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
     stage('quality analysis') {
-        withSonarQubeEnv('sonar') {
+        sh "./mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
+        /*withSonarQubeEnv('sonar') {
             //sh "./mvnw -ntp initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
-            sh "./mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
+
             //mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001
-        }
+        }*/
     }
 
     def dockerImage
