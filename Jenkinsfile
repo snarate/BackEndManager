@@ -11,7 +11,7 @@ node {
 
     stage('clean install') {
         sh "chmod +x mvnw"
-        sh "./mvnw -ntp clean -P-webapp install"
+        sh "./mvnw -ntp clean -P-webapp"
     }
     /*
     stage('nohttp') {
