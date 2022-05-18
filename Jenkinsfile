@@ -11,7 +11,7 @@ node {
 
     stage('clean install') {
         sh "chmod +x mvnw"
-        sh "./mvnw -ntp clean -P-webapp"
+        sh "./mvn clean install"
     }
     /*
     stage('nohttp') {
@@ -32,7 +32,8 @@ node {
     //}
     
     stage('quality analysis') {
-        sh "./mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
+        //sh "./mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
+        sh "./mvn sonar:sonar -Dsonar.host.url=http://localhost:9001"
         /*withSonarQubeEnv('sonar') {
             //sh "./mvnw -ntp initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
 
