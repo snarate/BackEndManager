@@ -9,9 +9,9 @@ node {
         sh "java -version"
     }
 
-    stage('clean') {
+    stage('clean install') {
         sh "chmod +x mvnw"
-        sh "./mvnw -ntp clean -P-webapp"
+        sh "./mvnw -ntp clean -P-webapp install"
     }
     /*
     stage('nohttp') {
@@ -26,10 +26,10 @@ node {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
     }
     */
-    stage('packaging') {
-        sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
-        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-    }
+    //stage('packaging') {
+    //    sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
+    //    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+    //}
     
     stage('quality analysis') {
         sh "./mvnw initialize sonar:sonar -Dsonar.host.url=http://localhost:9001"
